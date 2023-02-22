@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,400i,700");
+$font-primary: 15px/20px Inconsolata, sans-serif;
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
+$font-secondary: small-caps 15px/20px Open-Sans, serif;
+
+$rose-pale: #fae9e6;
+$green-pale: #a1bdaa;
+
+img {
+    width: 290px;
+    margin-top: 47px;
+}
+h1 {
+    font: $font-primary;
+    text-transform: uppercase;
+    color: $rose-pale;
+}
+.product-buttons {
+    font: $font-secondary;
+    font-size: 3em;
+        
+    .product-add {
+        
+    }
+    .product-sub {
+
+    }
+}
+.product-count {
+    font: $font-primary;
+    font-size: 5em;
+}

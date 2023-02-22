@@ -1,0 +1,21 @@
+footer {
+    background-color: #a9400b;
+    color: #f3eade;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    a {
+        color: #ffdda6;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+    }
+}
+
+footer .left .right {
+    padding: 4em;
+}
+
