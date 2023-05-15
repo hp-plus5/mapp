@@ -4,7 +4,7 @@ import {useState} from "react";
 // 1. Formik (https://formik.org/)
 // 2. React Hook Form (https://react-hook-form.com/)
 
-export default function ProductForm() {
+export default function ProductForm(props) {
     var [order, setOrder] = useState({});
     var [count, setCount] = useState(0);
     var [size, setSize] = useState("Medium");
@@ -12,6 +12,9 @@ export default function ProductForm() {
     var [customContent, setCustomContent] = useState("");
     var [textareaContent, setTextareaContent] = useState("");
 
+    var {aimage, aname, adescription, aprice, asalePrice, aonSale, aoptions} = props.details;
+
+    console.log(aoptions);
     /**
      * order: {itemId: , color: , size: , customContent: , count: }
      */
@@ -48,7 +51,7 @@ export default function ProductForm() {
 
     return(<>
      <form method="post" onSubmit={handleSubmit}>
-        <div className="selections">
+        <fieldset className="selections">
             <label className="color-choices">
                 Color
                 <select onChange={event => setColor(event.target.value)} name="color" value={color}>
@@ -66,24 +69,30 @@ export default function ProductForm() {
                     <option value="Large">Large</option>
                 </select>
             </label>
-        </div>
+        </fieldset>
         
-        <button onClick={handleCountDecrease} disabled={count<1 ? true : false} className="product-sub">-</button>
-        <h3 className="product-count">{count}</h3>
-        <button onClick={handleCountIncrease} type="button" className="product-add">+</button>
-        
-        <label>
-            Custom content:
-            <input onChange={event => setCustomContent(event.target.value)} name="customContent" type="text"></input>
-        </label>
-        <label>
-            Further notes:
-            <textarea onChange={event => setTextareaContent(event.target.value)} name="textareaContent" />
-        </label>
+        <fieldset className="product-buttons">
+            <button onClick={handleCountDecrease} disabled={count<1 ? true : false} className="product-sub" type="button">-</button>
+            <h3 className="product-count">{count}</h3>
+            <button onClick={handleCountIncrease} className="product-add" type="button">+</button>
+        </fieldset>
+
+        <fieldset>
+            <label className="product-text">
+                Custom content
+                <input onChange={event => setCustomContent(event.target.value)} name="customContent" type="text" />
+            </label>
+            <label className="product-text">
+                Further notes
+                <textarea onChange={event => setTextareaContent(event.target.value)} name="textareaContent" />
+            </label>
+        </fieldset>
         
         {/* You have onSubmit filled out on the form element, so label this clearly but put your submission method there. This is so that pressing enter submits the form so the form is a step closer to being accessible. */}
-        <button type="submit">Add to Cart</button>
-        <button onClick={handleRemoveOrder} type="button">Remove from Cart</button>
+        <fieldset>
+            <button type="submit">Add to Cart</button>
+            <button onClick={handleRemoveOrder} type="button">Remove from Cart</button>
+        </fieldset>
      </form>
     </>);
 }

@@ -1,6 +1,6 @@
 import './Card.scss';
 
-function Card(props) {
+export default function Card(props) {
     return(
         <>
             <div className="card">
@@ -9,5 +9,3 @@ function Card(props) {
         </>
     );
 }
-
-export default Card;

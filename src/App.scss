@@ -1,0 +1,171 @@
+// not sure if i want to use these
+// @import url("https://fonts.googleapis.com/css?family=Inconsolata:400,400i,700");
+// $font-primary: 15px/20px Inconsolata, sans-serif;
+
+// @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
+// $font-secondary: small-caps 15px/20px Open-Sans, serif;
+
+// $rose-pale: #fae9e6;
+// $green-pale: #a1bdaa;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Joan&family=Source+Code+Pro:wght@200;400&display=swap');
+/* 
+sample use:
+font-family: 'Joan', serif;
+font-family: 'Roboto Mono', monospace;
+*/
+
+////////////////// VARIABLES \\\\\\\\\\\\\\\\\\\
+:root {
+  --color-primary: rgb(247, 193, 193);
+  --color-secondary: #bd989a;
+  --color-darkest: #0d1b2a;
+  --color-darker: #1b263b;
+  --color-dark: #415a77;
+  --color-light: #778da9;
+  --color-lighter: #e0e1dd;
+  --color-disabled: #b38485;
+}
+// Syntax to use:
+// background: var(--color-darkest);
+// color: var(--color-primary);
+
+
+////////////////// ELEMENTS \\\\\\\\\\\\\\\\\\\
+a {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+fieldset {
+  border: 0px;
+}
+
+label {
+  margin: 1em 0.5em 1em 0.5em;
+  word-break: break-word;
+}
+
+button {
+  background-color: transparent;
+  color: var(--color-primary);
+  font-family: monospace;
+  font-size: medium;
+  border: 2px solid var(--color-primary);
+  border-radius: 99px;
+  padding: 1em 2em;
+  margin: 1em;
+
+  &:disabled {
+    border: 1px solid var(--color-disabled);
+    color: var(--color-disabled);
+  }
+}
+
+input {
+  border: 0;
+  margin: 1em 1em 0em 1em;
+  outline: none;
+  padding: 0.25em 1em 0.25em 1em;
+  text-overflow: ellipsis;
+  border-radius: 10px;
+}
+
+input[type="checkbox"] + label {
+  align-self: flex-end;
+}
+
+textarea {
+  border-radius: 10px 10px 0px 10px;
+  margin: 1em;
+
+  // these two lines allow our label on the textarea to be vertically centered
+  display: inline-block;
+  vertical-align: middle;
+}
+
+select {
+  color: var(--color-lighter);
+  font-weight: 900;
+  text-align: end;
+  background-image: url("../public/VG-blurred-darkened.png");
+  background-position: center;
+  width: 9em;
+  padding: 0.5em 1em;
+  margin: 1em;
+}
+
+////////////////// CLASSES \\\\\\\\\\\\\\\\\\\
+.app {
+  background-color: var(--color-darkest);
+  color: var(--color-primary);
+  min-height: 100vh;
+  text-align: center;
+  font-size: 1em;
+  font-family: 'Roboto Mono', monospace;
+  line-height: 1.3em;
+}
+
+.body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 100vh;
+}
+
+// this currently is nonsense in positioning
+.notification {
+  background-color: var(--color-light);
+  border-radius: 50%;
+  color: white;
+  width: 1em;
+  height: 1em;
+  left: 242px;
+  bottom: 51px;
+  padding: 2px 3px 2px 2px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.highlight {
+  margin: 0 -0.4em;
+  padding: 0.1em 0.4em;
+  border-radius: 0.8em 0.3em;
+  background: transparent;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 225, 0, 0.4),
+    rgba(255, 225, 0, 0.7) 4%,
+    rgba(255, 225, 0, 0.3)
+  );
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.code {
+  color: #61dafb;
+  font-family: monospace;
+
+  .method_name {
+      font-size: larger;
+  }
+  .arguments {
+      color:#31d0f8;
+  }
+}
+
+.finePrint {
+  font-size: small;
+}
+
+
+.listedItem {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

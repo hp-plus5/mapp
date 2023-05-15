@@ -1,0 +1,8 @@
+.story-body {
+    font-family: 'Joan', serif;
+    line-height: 1.7em;
+
+  &::first-letter {
+    font-size: 40px;
+  }
+}

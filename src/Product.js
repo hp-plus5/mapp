@@ -1,31 +1,20 @@
 import ProductForm from "./ProductForm";
+import ProductPriceDisplay from "./ProductPriceDisplay";
+import './Product.scss';
 
-function Product(props) {
-    var {image, name, description, price, onSale} = props.details;
-
-    function displaySale() {
-        return <>
-            <span className="sale">Sale</span>
-            <p className="sale-price">$49.99</p>
-        </>;
-    }
+export default function Product(props) {
+    var {image, name, description, price, salePrice, onSale} = props.details;
 
     return(
     <div className="product">
-        <img src={image} width="50" alt={name} />
+        <ProductPriceDisplay details={[image, name, price, onSale, salePrice]} />
         <div className="product-info">
             <h2>{name}</h2>
-            <span className="price-info">
-                {onSale === true ? displaySale : false}
-                <p className={onSale === true ? "slashed-price" : false}>{price}</p>
-            </span>
             <p>{description}</p>
         </div>
-        <div className="product-buttons">
-            <ProductForm details={props} />
+        <div>
+            <ProductForm details={props.details} />
         </div>
     </div>
     );
 }
-
-export default Product;

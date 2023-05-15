@@ -1,9 +1,11 @@
 .card {
-    background-color: rgb(132, 83, 115);
-    color: rgb(247, 193, 193);
+    background-color: var(--color-darker);
+    color: var(--color-primary);
     max-width: 40em;
     min-width: 2em;
-    margin: 0em 1.5em 0em 1.5em;
-    padding: 0.5em;
+    margin: 0em 1.5em 5em 1.5em;
+    padding: 3.5em;
     box-shadow: 5px 5px 15px rgba(#ab7e7e, 0.5);
+    // border: 0.5px solid rgb(247, 193, 193);
+    border-radius: 99px;
 }

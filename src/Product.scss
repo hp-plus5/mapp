@@ -1,33 +1,68 @@
-@import url("https://fonts.googleapis.com/css?family=Inconsolata:400,400i,700");
-$font-primary: 15px/20px Inconsolata, sans-serif;
-
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
-$font-secondary: small-caps 15px/20px Open-Sans, serif;
-
-$rose-pale: #fae9e6;
-$green-pale: #a1bdaa;
+@import './App.scss';
 
 img {
     width: 290px;
     margin-top: 47px;
+    clip-path: circle();
 }
-h1 {
-    font: $font-primary;
-    text-transform: uppercase;
-    color: $rose-pale;
-}
-.product-buttons {
-    font: $font-secondary;
-    font-size: 3em;
-        
-    .product-add {
-        
-    }
-    .product-sub {
 
+.sale {
+    // decorates the text word "Sale"
+    background-color: white;
+}
+.cost {
+    font-weight: 900;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+}
+
+.price {
+    position: relative;
+
+    &-sale {
+        position: absolute;
+        // the new price
+        // @extend .highlight;
+        background-color: var(--color-primary);
+        color: var(--color-darker);
+        // z-index: 1;
+        font-size: 1.3em;
+        z-index: 2;
+    }
+
+    &-slashed {
+        color: var(--color-disabled);
+        text-decoration: line-through;
+    }
+
+    &-info {
+        position: absolute;
+        bottom: 4px;
+        right: 18px;
+        background-color: var(--color-dark);
+        clip-path: circle();
+        display: inline-block;
+        height: 5em;
+        width: 5em;
+        // z-index: 0;
     }
 }
-.product-count {
-    font: $font-primary;
-    font-size: 5em;
+
+.product {
+    &-buttons {
+        display: flex;
+        justify-content: center;
+        font: var(--color-lighter);
+    }
+
+    &-count {
+        font: var(--color-light);
+        line-height: 2.4;
+    }
+    
+    &-text {
+        display: inline-block;
+        vertical-align: middle;
+    }
 }

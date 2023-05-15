@@ -1,0 +1,26 @@
+// :root {
+//     // --color-primary: rgb(247, 193, 193);
+//     --color-primary: #75d0f0;
+//     --color-secondary: #f2934a;
+//     --color-darker: #1b263b;
+//     --color-dark: #3a4ca6;
+//     --color-light: #c7ce9f;
+//     --color-lighter: #e7ecca;
+//     --color-disabled: #d6d8e1;
+// }
+@import '../App.scss';
+
+.word-icon {
+    border-radius: 10%;
+    padding: 8px;
+}
+
+.header {
+    background-color: var(--color-darker);
+    color: var(--color-light);
+}
+
+.filter {
+    background-color: var(--color-dark);
+    color: var(--color-lighter);
+}

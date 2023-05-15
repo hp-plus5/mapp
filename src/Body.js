@@ -1,24 +1,40 @@
 import Counter from "./Counter";
 import Card from "./Card";
+import GhostMessage from "./GhostMessage";
+import LifeCalculator from "./LifeCalculator/LifeCalculator"
 import Product from "./Product";
-import ToDoList from "./ToDoList";
-import './Body.scss';
+import StoryBook from "./StoryBook";
+import ToDoList from "./ToDo/ToDoList";
+import WhiteEraseBoard from "./WhiteEraseBoard";
 
-function Body() {
+export default function Body() {
+
+    // Shoes; with circle was too zoomed in
+    // https://mistillas.cl/wp-content/uploads/2018/04/Nike-Epic-React-Flyknit-%E2%80%9CPearl-Pink%E2%80%9D-01.jpg
 
     var productInfo = [{
-        image: "https://mistillas.cl/wp-content/uploads/2018/04/Nike-Epic-React-Flyknit-%E2%80%9CPearl-Pink%E2%80%9D-01.jpg",
-        name: "Cool Shoes",
-        onSale: true,
+        image: "https://i.pinimg.com/originals/f8/47/f0/f847f0f3603178ac6687e69d84bff10e.jpg",
+        name: "One cool bra",
+        onSale: false,
+        salePrice: 0,
         price: 129.99,
-        description: "No brand like name brand, am I right?"
+        description: "For that sweet sweet cool factor",
+        options: {
+            color: ["Brown", "Pink"],
+            size: ["Small", "Medium", "Large"]
+        }
     },
     {
         image: "https://mistillas.cl/wp-content/uploads/2018/03/27.990.jpg",
         name: "Cool Shirt",
         onSale: true,
+        salePrice: 88.88,
         price: 99.99,
-        description: "Because the coolest shirts are stolen from the fifty cent bin from Goodwill"
+        description: "Because the coolest shirts are stolen from the fifty cent bin from Goodwill",
+        options: {
+            color: ["Pink with Red", "Orange with Yellow"],
+            size: ["XS", "S", "M", "L", "XL"]
+        }
     }];
 /** 
  *  <FeaturedProducts>
@@ -36,7 +52,7 @@ function Body() {
 */
     return (
         <div id="body">
-            <Card>  
+            <Card>
                 <Counter /> 
             </Card>
             <Card>  
@@ -45,20 +61,22 @@ function Body() {
             <Card>  
                 <Product details={productInfo[1]} /> 
             </Card>
-            <Card>  
-                <ToDoList /> 
+            <Card>
+                <ToDoList />
             </Card>
             <Card>  
-                <Counter /> 
+                <LifeCalculator /> 
+            </Card>
+            Hooks:
+            <Card>
+                <GhostMessage />
             </Card>
             <Card>  
-                <Counter /> 
+                <WhiteEraseBoard /> 
             </Card>
             <Card>  
-                <Counter /> 
+                <StoryBook /> 
             </Card>
         </div>
     );
 }
-
-export default Body;
