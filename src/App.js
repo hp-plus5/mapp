@@ -1,15 +1,13 @@
 import './App.scss';
-import Header from './Header';
-import Body from './Body';
-import Footer from './Footer';
 import Mapp from './Mapp/Mapp';
+import Header from './Header';
+import Footer from './Footer';
 
 function App() {
   return (
     <div className="app">
       <Mapp />
       <Header />
-      <Body />
       <Footer />
     </div>
   );
