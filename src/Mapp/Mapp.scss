@@ -1,26 +1,8 @@
 @import '../App.scss';
-:root {
-    // --color-primary: rgb(247, 193, 193);
-    --color-primary: #75d0f0;
-    --color-secondary: #f2934a;
-    --color-darker: #1b263b;
-    --color-dark: #3a4ca6;
-    --color-light: #c7ce9f;
-    --color-lighter: #e7ecca;
-    --color-disabled: #d6d8e1;
-}
 
 #mapp {
     padding: 10px;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     text-align: center;
-
-    h1, h3 {
-        font-family: 'Joan', serif;
-    }
-    
-    h2, p {
-        font-family: 'Roboto Mono', monospace;
-    }
 }

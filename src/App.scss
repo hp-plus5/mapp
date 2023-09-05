@@ -5,41 +5,65 @@
 // @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
 // $font-secondary: small-caps 15px/20px Open-Sans, serif;
 
-// $rose-pale: #fae9e6;
-// $green-pale: #a1bdaa;
+////////////////// TABLE OF CONTENTS \\\\\\\\\\\\\\\\\\\
+/// fonts
+/// variables
+/// elements
+/// classes
+/// text icon overview
+
 
 
 @import url('https://fonts.googleapis.com/css2?family=Joan&family=Source+Code+Pro:wght@200;400&display=swap');
 /* 
-sample use:
+Syntax to use:
 font-family: 'Joan', serif;
 font-family: 'Roboto Mono', monospace;
 */
 
+@font-face {
+  font-family: "manbow";
+  src: url("./images/manbow tone.otf");
+}
+/* 
+Syntax to use:
+font-family: 'manbow';
+*/
+
 ////////////////// VARIABLES \\\\\\\\\\\\\\\\\\\
 :root {
-  --color-primary: rgb(247, 193, 193);
-  --color-secondary: #bd989a;
-  --color-darkest: #0d1b2a;
+  // --color-primary: rgb(247, 193, 193);
+  --color-primary: #75d0f0;
+  --color-secondary: #f2934a;
   --color-darker: #1b263b;
-  --color-dark: #415a77;
-  --color-light: #778da9;
-  --color-lighter: #e0e1dd;
-  --color-disabled: #b38485;
+  --color-dark: #3a4ca6;
+  --color-light: #c7ce9f;
+  --color-lighter: #e7ecca;
+  --color-disabled: #d6d8e1;
 }
-// Syntax to use:
-// background: var(--color-darkest);
-// color: var(--color-primary);
+/* 
+Syntax to use:
+background: var(--color-darker);
+color: var(--color-primary);
+**/
 
 
 ////////////////// ELEMENTS \\\\\\\\\\\\\\\\\\\
 a {
-  color: #61dafb;
+  color: var(--color-primary);
   text-decoration: none;
 }
 
 fieldset {
   border: 0px;
+}
+
+h1, h3 {
+  font-family: 'Joan', serif;
+}
+
+h2, p {
+  font-family: 'Roboto Mono', monospace;
 }
 
 label {
@@ -56,6 +80,10 @@ button {
   border-radius: 99px;
   padding: 1em 2em;
   margin: 1em;
+
+  &:secondary {
+    color: var(--color-secondary);
+  }
 
   &:disabled {
     border: 1px solid var(--color-disabled);
@@ -97,7 +125,7 @@ select {
 
 ////////////////// CLASSES \\\\\\\\\\\\\\\\\\\
 .app {
-  background-color: var(--color-darkest);
+  background-color: var(--color-darker);
   color: var(--color-primary);
   min-height: 100vh;
   text-align: center;
@@ -112,7 +140,6 @@ select {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
-  min-height: 100vh;
 }
 
 // this currently is nonsense in positioning
@@ -147,14 +174,14 @@ select {
 }
 
 .code {
-  color: #61dafb;
+  color:  var(--color-secondary);
   font-family: monospace;
 
   .method_name {
       font-size: larger;
   }
   .arguments {
-      color:#31d0f8;
+      color: var(--color-secondary);
   }
 }
 
