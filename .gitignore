@@ -11,6 +11,9 @@
 # production
 /build
 
+# notes
+src/successful_call_info
+
 # misc
 .DS_Store
 .env.local
