@@ -1,25 +1,18 @@
-import logo from './logo.svg';
+import logo_map from './images/logo_map.svg';
 import './Header.scss';
 
 function Header() {
     return (
     <header>
+        <img src={logo_map} className="mapp-logo" alt="mapp logo" />
         <span>
-          <img src={logo} className="app-logo" alt="logo" />
-          <h1 className="title">
-            Learning React
-          </h1>
+          <h1 className="title">Mapp</h1>
+          <h3 className="byline">Think It, Mapp It, Make It</h3>
         </span>
-        <div>
-          <a
-            className="link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            See docs here
-          </a>
-        </div>
+        <span className="user_tools">
+          <button type="button">Log In</button>
+          <button type="button">Register</button>
+        </span>
       </header>
     );
 }
