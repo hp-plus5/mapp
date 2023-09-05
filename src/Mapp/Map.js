@@ -1,15 +1,29 @@
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import FileKeeper from './FileKeeper';
+import Legend from './Legend';
+import DebugData from './DebugData';
 import './Map.scss';
 import { useEffect, useState } from 'react'; 
 
 export default function Map(props) {
-    let [map, setMap] = useState();
+    const [map, setMap] = useState();
+    const [marker, setMarker] = useState();
+    // // if you want a default value based on localStorage, here's how you do it:
+    // // localStorage is expensive, so we want to make sure that React attempts to fetch it from localStorage rather than scope/(whatever we've used setSomeState to) only once, when we'll actually be using that value on first page load. After that, normally, every re-render evaluates the expression passed to useState before taking on the new value last set using setSomeState. To solve this as a performance problem (we don't wanna call on getItem all the time), instead of passing in an expression, we'll pass a function that React can say "no thanks, I actually don't need that" to. Here's the expression we don't want:
+    // const [someState, setSomeState] = useState(localStorage.getItem("some-state"));
+    // // instead, we'll pass it a function:
+    // const [someState, setSomeState] = useState(() => localStorage.getItem("some-state") ?? "");
+    // // this is called "lazy initial state".
 
-    const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic3dhcm5lciIsImEiOiJjbGY3a3FranIwNDJrM3Nydmt3ZnVhNTI0In0.HqgTiHI-nq0IkFRQbZ3XgA'
+    // this is an attempt to let us hit "re-render" instead of making another whole call on the API for map creation. I'm not clear on how that's supposed to work.
+    const [random, setRandom] = useState(Math.random());
+
+    const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic3dhcm5lciIsImEiOiJjbGY3a3FranIwNDJrM3Nydmt3ZnVhNTI0In0.HqgTiHI-nq0IkFRQbZ3XgA';
+    // access token from react tutorial:
+    // pk.eyJ1Ijoic3dhcm5lciIsImEiOiJjbGY3a3FranIwNDJrM3Nydmt3ZnVhNTI0In0.HqgTiHI-nq0IkFRQbZ3XgA
 
     useEffect(() => {
-        setMap(new mapboxgl.Map({
+         const map = setMap(new mapboxgl.Map({
             container: 'mapbox_element',
             style: 'mapbox://styles/mapbox/outdoors-v12',
             center: [
@@ -18,13 +32,19 @@ export default function Map(props) {
             ], // [lng, lat]
             zoom: 0.6851443156248076,
             accessToken: MAPBOX_ACCESS_TOKEN
+            // bc i don't think i need this, and i don't want it explicitly passed through the internet and something tells me mapbox grabs it the way it does SO that your token doesn't get through in an easily manipulateable way
         }));
+        let marker = new mapboxgl.Marker()
+            .setLngLat([12.567898, 55.67583])
+            .addTo(map);
+        setMarker(marker);
     }, []);
 
     // VV to add controls to the top left of the map frame
     // map.addControl(new mapboxgl.NavigationControl(), "top-left");
 
     // VV to add points? not right. I need to find a better example of how you're actually supposed to do this, and then figure out how to combine it with useEffect() (or ditch that).
+    // If I use this type of method, I should be sure to clean it up in useEffect in a function with the syntax `map.off("event")`
     // map.on('load', () => {
     //   map.addSource('streets', {
     //     type: 'geojson',
@@ -45,7 +65,7 @@ export default function Map(props) {
     //         ]
     //       }
     //     },
-    //     'water-shadow'
+    //     'water-shadow' // <-- is this the name of the layer?
     //   );
 
     //   const onSourceData = (event) => {
@@ -116,7 +136,43 @@ export default function Map(props) {
     // ]
     // var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
 
+    //// to store data in localStorage, some tips.
+    //// 1. useEffect to store data in localStorage whenever the input changes.
+    // useEffect(() => {
+    //     localStorage.setItem("chosen_key", JSON.stringify(location_points));
+    // }, [variableThatChanges]);
+    //// and to get it out again, use
+    // let recalled_data = localStorage.getItem("chosen_key");
+    // recalled_data = JSON.parse(recalled_data);
+
+    // a separate example that works from react tutorial, meant to be paired with a dropdown menu of preset markers. it then updates a single marker on the map to be the new store, rather than adding a marker. a great choice for when I'm adding layers and trying to toggle visibility.
+    // const stores = {
+    //     central: [12.567898, 55.67583],
+    //     norrebro: [12.553806, 55.699299],
+    //     airport: [12.650784, 55.618042]
+    // }
+    // const handleDropdownSelection = (event) => {
+    //     marker.setLngLat(stores[event.target.value]);
+    //     setMarker(marker);
+    // }
+
     // somehow grab state from FileKeeper? I don't know how to appropriately squirrel that state and data away. I want to check if there's content, and if not, display a fake map and apply a disabled coloration over it.
+
+    const handleLayerToggle = (event) => {
+        console.log("We toggled a layer");
+        // i'm not sure how to make this properly dynamic.
+
+        // stateVisibilityVariable = !stateVisibilityVariable
+        // event.target.value.cssVisible = stateVisibilityVariable ? "true" : "false"
+        // or
+        // addLayer(stateVariableForThisBoundary), removeLayer(stateVariableForThisBoundary)?
+        // or
+        // stateVisibilityVariable = !stateVisibilityVariable
+        // setStateVariableForThisBoundary(stateVariableForThisBoundary)
+        // and then because useEffect it will automatically update? maybe?
+    }
+    const variableOne = "poop1";
+    const variableTwo = "poop2";
 
     return(<>
         <div className="map-body">
