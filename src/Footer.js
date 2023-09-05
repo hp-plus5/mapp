@@ -9,8 +9,29 @@ function Footer() {
             </div>
             <div className="right">
                 <a href="/#">About</a>
-                <a href="/#">Contact Us</a>
-                <a href="/#">See the Code</a>
+                <a
+                className="link"
+                href="https://linkedin.com/in/sam-warner"
+                target="_blank"
+                rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+                <a
+                className="link"
+                href="https://github.com/hp-plus5"
+                target="_blank"
+                rel="noopener noreferrer"
+                >
+                  See the Code
+                </a>
+                <a className="link"
+                href="mailto:y1bpdyns@duck.com?subject=Mapp Bug Report"
+                target="_blank"
+                rel="noopener noreferrer"
+                >
+                  Report a problem
+                </a>
                 <a href="/#">Curious today, are we?</a>
             </div>
         </footer>
