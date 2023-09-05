@@ -120,6 +120,11 @@ export default function Map(props) {
 
     return(<>
         <div className="map-body">
+            <button id="re-render" onClick={() => setRandom(Math.random())}>
+                Re-render
+            </button>
+            <DebugData variableOne={variableOne} variableTwo={variableTwo} />
+            <Legend handleLayerToggle={handleLayerToggle} />
             <h3>Map Goes Here</h3>
             <div id="mapbox_element"></div>
         </div>
