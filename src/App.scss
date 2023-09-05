@@ -89,7 +89,6 @@ select {
   color: var(--color-lighter);
   font-weight: 900;
   text-align: end;
-  background-image: url("../public/VG-blurred-darkened.png");
   background-position: center;
   width: 9em;
   padding: 0.5em 1em;
@@ -169,3 +168,11 @@ select {
   justify-content: flex-start;
   align-items: center;
 }
+
+//////////// ICONS
+/// Most are sourced from FontAwesome at the free tier:
+/// https://fontawesome.com/search?q=map&o=r&m=free&c=maps
+/// 
+///////// SPECIFIC ICONS
+/// The pushpin icon is sourced from FontAwesome:
+/// https://fontawesome.com/icons/map-pin?f=classic&s=solid&pc=%23000000
