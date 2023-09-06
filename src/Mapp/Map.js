@@ -8,16 +8,7 @@ import { useEffect, useState } from 'react';
 export default function Map(props) {
     const [map, setMap] = useState();
     const [marker, setMarker] = useState();
-    // // if you want a default value based on localStorage, here's how you do it:
-    // // localStorage is expensive, so we want to make sure that React attempts to fetch it from localStorage rather than scope/(whatever we've used setSomeState to) only once, when we'll actually be using that value on first page load. After that, normally, every re-render evaluates the expression passed to useState before taking on the new value last set using setSomeState. To solve this as a performance problem (we don't wanna call on getItem all the time), instead of passing in an expression, we'll pass a function that React can say "no thanks, I actually don't need that" to. Here's the expression we don't want:
-    // const [someState, setSomeState] = useState(localStorage.getItem("some-state"));
-    // // instead, we'll pass it a function:
-    // const [someState, setSomeState] = useState(() => localStorage.getItem("some-state") ?? "");
-    // // this is called "lazy initial state".
-
-    // this is an attempt to let us hit "re-render" instead of making another whole call on the API for map creation. I'm not clear on how that's supposed to work.
-    const [random, setRandom] = useState(Math.random());
-
+    
     const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic3dhcm5lciIsImEiOiJjbGY3a3FranIwNDJrM3Nydmt3ZnVhNTI0In0.HqgTiHI-nq0IkFRQbZ3XgA';
     // access token from react tutorial:
     // pk.eyJ1Ijoic3dhcm5lciIsImEiOiJjbGY3a3FranIwNDJrM3Nydmt3ZnVhNTI0In0.HqgTiHI-nq0IkFRQbZ3XgA
@@ -32,8 +23,8 @@ export default function Map(props) {
             ], // [lng, lat]
             zoom: 0.6851443156248076,
             accessToken: MAPBOX_ACCESS_TOKEN
-            // bc i don't think i need this, and i don't want it explicitly passed through the internet and something tells me mapbox grabs it the way it does SO that your token doesn't get through in an easily manipulateable way
-        }));
+        });
+
         let marker = new mapboxgl.Marker()
             .setLngLat([12.567898, 55.67583])
             .addTo(map);
@@ -128,13 +119,12 @@ export default function Map(props) {
     // });
   
 
-    // const location_points = [];
+    // const location_points =
     // [
     //     {longitude: 00.0, latitude: 00.0},
     //     {longitude: 00.0, latitude: 00.0},
     //     {longitude: 00.0, latitude: 00.0}
     // ]
-    // var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
 
     //// to store data in localStorage, some tips.
     //// 1. useEffect to store data in localStorage whenever the input changes.
@@ -176,9 +166,6 @@ export default function Map(props) {
 
     return(<>
         <div className="map-body">
-            <button id="re-render" onClick={() => setRandom(Math.random())}>
-                Re-render
-            </button>
             <DataFromRails variableOne={variableOne} variableTwo={variableTwo} />
             <Legend handleLayerToggle={handleLayerToggle} />
             <h3>Map Goes Here</h3>
