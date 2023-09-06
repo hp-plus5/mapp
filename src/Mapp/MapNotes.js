@@ -193,8 +193,6 @@ export default function Map(props) {
     //     setMarker(marker);
     // }
 
-    // somehow grab state from FileKeeper? I don't know how to appropriately squirrel that state and data away. I want to check if there's content, and if not, display a fake map and apply a disabled coloration over it.
-
     const handleLayerToggle = (event) => {
         console.log("We toggled a layer");
         // i'm not sure how to make this properly dynamic.

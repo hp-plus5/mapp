@@ -1,6 +1,5 @@
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 import Legend from './Legend';
-import DataFromRails from './DataFromRails';
 import Marker from './Marker';
 import './Map.scss';
 import { useEffect, useState } from 'react'; 
@@ -35,7 +34,6 @@ export default function Map(props) {
     // VV to add controls to the top left of the map frame
     // map.addControl(new mapboxgl.NavigationControl(), "top-left");
 
-    // VV to add points? not right. I need to find a better example of how you're actually supposed to do this, and then figure out how to combine it with useEffect() (or ditch that).
     // If I use this type of method, I should be sure to clean it up in useEffect in a function with the syntax `map.off("event")`
     // map.on('load', () => {
     //   map.addSource('streets', {
@@ -147,8 +145,6 @@ export default function Map(props) {
     //     setMarker(marker);
     // }
 
-    // somehow grab state from FileKeeper? I don't know how to appropriately squirrel that state and data away. I want to check if there's content, and if not, display a fake map and apply a disabled coloration over it.
-
     const handleLayerToggle = (event) => {
         console.log("We toggled a layer");
         // i'm not sure how to make this properly dynamic.
@@ -167,7 +163,6 @@ export default function Map(props) {
 
     return(<>
         <div className="map-body">
-            <DataFromRails variableOne={variableOne} variableTwo={variableTwo} />
             <Legend handleLayerToggle={handleLayerToggle} />
             <h3>Map Goes Here</h3>
             <Marker places={} />

@@ -2,9 +2,7 @@
 import { request, gql } from "graphql-request";
 import { useQuery } from "react-query";
 
-export default function DataFromRails(props) {
-    // const [variableOne, variableTwo] = props;
-
+export default function SavedCollectionList() {
     const real_endpoint = "http://localhost:4000/graphql/";
     
     const real_request = gql`
