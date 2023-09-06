@@ -1,6 +1,6 @@
 # MAPP
 
-Welcome to Mapp! This is a use of the Mapbox GL JS API to the ends of creating mapping software that's more approachable and direct than the default Mapbox or Google Maps products. This project needs built out quite a bit more.
+Welcome to Mapp! This is a use of the Mapbox GL JS API to the ends of creating mapping software that's more approachable and direct than the default Mapbox or Google Maps products. (Nothing like blind ambition!) This project needs built out quite a bit more.
 
 In the project directory, you can run:
 ### `npm start`
@@ -30,32 +30,32 @@ Things to know about the many confusing APIs offered by Mapbox:
 Raster in Mapbox API-speak is images/satellite view
 Vector is what we want
 We don’t want something static; we want users to be able to click on points and edit their data/refresh specific markers
+I think we'll need to ask them in a geoJSON format
 If we want more customized icons, we can look to the [Maki icon editor](https://labs.mapbox.com/maki-icons/editor/).
+
+**Stretch Goal Ideas:**
+- User can create a new point in the map GUI, edits its properties, add that point automatically to the table, and later export their new point  to a CSV file.
 
 #### Technical breakdown
 Process of saving that I anticipate:
-CSV is uploaded
-Data 
-
-
-
+4. I send a request to mapbox that contains the markers of CSV-originated geoJSON
+(Now data is mapped)
+5. If the user is logged in, there is a button to "save this collection"
+6. If selected, their CSV data is sent to the backend. I'm not sure where in here we map them to a collection model instance, but we do. This is perhaps somehow a form? I'm not sure.
+7. 
 
 1. User uploads CSV file
 - How to most safely intake data a user submits, considering it could be anything?
-- We will want to take in this data and convert it into GeoJSON to send to the Mapbox API
-- Data is mapped to the model, who eventually handles incoming addresses and turns them into geocodes (longitude and latitude)
+- User can see their CSV file as a table below their map
+- We will want to take in this data and convert it into GeoJSON to send to the Mapbox API. I'm not sure how to architect out this separate concern.
+2. User can save their "collection" if they're logged in
+- CSV data is mapped to the backend model, who eventually handles incoming addresses and turns them into geocodes (longitude and latitude)
 - Model saves geocodes only? Perhaps permit users to select if they save the addresses separately for more legible human viewing?
-- Points are fed back into React
-- React creates map
-- React creates a lot of “AddPoint” calls and loops through all of the user-submitted geocodes to make them visible on the map
 
 In other words,
-- Intake form
-- Transfer FormData to file
-- Transfer file to the file’s data
 - Map each row of the file data to a model, validating it in-model along the way
 - Guard against attack in the model. I’m not sure if this is exactly the same as the previous step
-- Send model instances to React
+- Get that model back and put it into a table again and a map again
 
 Controller methods:
 / GET - home screen, empty intake form
