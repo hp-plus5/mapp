@@ -14,7 +14,7 @@ export default function Map(props) {
     // pk.eyJ1Ijoic3dhcm5lciIsImEiOiJjbGY3a3FranIwNDJrM3Nydmt3ZnVhNTI0In0.HqgTiHI-nq0IkFRQbZ3XgA
 
     useEffect(() => {
-         const map = setMap(new mapboxgl.Map({
+         const map = new mapboxgl.Map({
             container: 'mapbox_element',
             style: 'mapbox://styles/mapbox/outdoors-v12',
             center: [
@@ -28,7 +28,10 @@ export default function Map(props) {
         let marker = new mapboxgl.Marker()
             .setLngLat([12.567898, 55.67583])
             .addTo(map);
+
+        setMap(map);
         setMarker(marker);
+        return () => map.remove();
     }, []);
 
     // VV to add controls to the top left of the map frame
