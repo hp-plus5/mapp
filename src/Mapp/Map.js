@@ -2,6 +2,7 @@ import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import FileKeeper from './FileKeeper';
 import Legend from './Legend';
 import DataFromRails from './DataFromRails';
+import Marker from './Marker';
 import './Map.scss';
 import { useEffect, useState } from 'react'; 
 
@@ -170,6 +171,7 @@ export default function Map(props) {
             <DataFromRails variableOne={variableOne} variableTwo={variableTwo} />
             <Legend handleLayerToggle={handleLayerToggle} />
             <h3>Map Goes Here</h3>
+            <Marker places={} />
             <div id="mapbox_element"></div>
         </div>
     </>);
