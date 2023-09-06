@@ -1,13 +1,4 @@
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
-// import FileKeeper from './FileKeeper';
-import Legend from './Legend';
-import DataFromRails from './DataFromRails';
-import './Map.scss';
-import { useEffect, useState } from 'react'; 
-
 export default function Map(props) {
-    const [map, setMap] = useState();
-    const [marker, setMarker] = useState();
     // // if you want a default value based on localStorage, here's how you do it:
     // // localStorage is expensive, so we want to make sure that React attempts to fetch it from localStorage rather than scope/(whatever we've used setSomeState to) only once, when we'll actually be using that value on first page load. After that, normally, every re-render evaluates the expression passed to useState before taking on the new value last set using setSomeState. To solve this as a performance problem (we don't wanna call on getItem all the time), instead of passing in an expression, we'll pass a function that React can say "no thanks, I actually don't need that" to. Here's the expression we don't want:
     // const [someState, setSomeState] = useState(localStorage.getItem("some-state"));
@@ -16,29 +7,29 @@ export default function Map(props) {
     // // this is called "lazy initial state".
 
     // this is an attempt to let us hit "re-render" instead of making another whole call on the API for map creation. I'm not clear on how that's supposed to work.
-    const [random, setRandom] = useState(Math.random());
+    // const [random, setRandom] = useState(Math.random());
 
-    const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic3dhcm5lciIsImEiOiJjbGY3a3FranIwNDJrM3Nydmt3ZnVhNTI0In0.HqgTiHI-nq0IkFRQbZ3XgA';
+    // const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic3dhcm5lciIsImEiOiJjbGY3a3FranIwNDJrM3Nydmt3ZnVhNTI0In0.HqgTiHI-nq0IkFRQbZ3XgA';
     // access token from react tutorial:
     // pk.eyJ1Ijoic3dhcm5lciIsImEiOiJjbGY3a3FranIwNDJrM3Nydmt3ZnVhNTI0In0.HqgTiHI-nq0IkFRQbZ3XgA
 
-    useEffect(() => {
-         const map = setMap(new mapboxgl.Map({
-            container: 'mapbox_element',
-            style: 'mapbox://styles/mapbox/outdoors-v12',
-            center: [
-              74.24426803763072,
-              -2.2507114487818853
-            ], // [lng, lat]
-            zoom: 0.6851443156248076, // the globe. 2 is a continent. 10 is Strongsville to downtown Cleveland.
-            accessToken: MAPBOX_ACCESS_TOKEN
-            // bc i don't think i need this, and i don't want it explicitly passed through the internet and something tells me mapbox grabs it the way it does SO that your token doesn't get through in an easily manipulateable way
-        }));
-        let marker = new mapboxgl.Marker()
-            .setLngLat([12.567898, 55.67583])
-            .addTo(map);
-        setMarker(marker);
-    }, []);
+    // useEffect(() => {
+    //      const map = setMap(new mapboxgl.Map({
+    //         container: 'mapbox_element',
+    //         style: 'mapbox://styles/mapbox/outdoors-v12',
+    //         center: [
+    //           74.24426803763072,
+    //           -2.2507114487818853
+    //         ], // [lng, lat]
+    //         zoom: 0.6851443156248076, // the globe. 2 is a continent. 10 is Strongsville to downtown Cleveland.
+    //         accessToken: MAPBOX_ACCESS_TOKEN
+    //         // bc i don't think i need this, and i don't want it explicitly passed through the internet and something tells me mapbox grabs it the way it does SO that your token doesn't get through in an easily manipulateable way
+    //     }));
+    //     let marker = new mapboxgl.Marker()
+    //         .setLngLat([12.567898, 55.67583])
+    //         .addTo(map);
+    //     setMarker(marker);
+    // }, []);
 
     // VV to add controls to the top left of the map frame
     // map.addControl(new mapboxgl.NavigationControl(), "top-left");
@@ -131,39 +122,39 @@ export default function Map(props) {
     // these are the docs for datasets. Most helpful about halfway down the page with the header "About datasets":
     // https://docs.mapbox.com/help/tutorials/add-points-pt-1/#create-a-dataset
 
-    const geojson_sample = {
-        "type": "FeatureCollection",
-        "features": [ // these are points, lines, and polygons on the map. built-in functionality, supposedly: drag features across map to re-place them, select and hit delete, and clicking to view properties. I may have misunderstood this and they mean this is functionality within their data editor. (See editor here: https://studio.mapbox.com/datasets/swarner/clm7u87ht2hgn2bmwpuorg76b/edit/#7/41.43/-82.1)
-            {
-                "type": "Feature",
-                "properties": { // this is the spot for custom fields
-                    "title": "San Blas Islands",
-                    "imageUrl": "https://c1.staticflickr.com/5/4241/35467523155_346b08810f_q.jpg",
-                    "type": "beach",
-                    "iconSize": [60, 60]
-                },
-                "geometry": {
-                    "type": "Point", // yes, this will be the type for our "places"
-                    "coordinates": [
-                        -78.82,
-                        9.57,
-                    ]
-                }
-            },
-        ]
-    };
-    geojson_sample.features.forEach((marker) => {
-        new mapboxgl.Marker()
-            .setLngLat(marker.geometry.coordinates)
-            .addTo(map);
-    })
+    // const geojson_sample = {
+    //     "type": "FeatureCollection",
+    //     "features": [ // these are points, lines, and polygons on the map. built-in functionality, supposedly: drag features across map to re-place them, select and hit delete, and clicking to view properties. I may have misunderstood this and they mean this is functionality within their data editor. (See editor here: https://studio.mapbox.com/datasets/swarner/clm7u87ht2hgn2bmwpuorg76b/edit/#7/41.43/-82.1)
+    //         {
+    //             "type": "Feature",
+    //             "properties": { // this is the spot for custom fields
+    //                 "title": "San Blas Islands",
+    //                 "imageUrl": "https://c1.staticflickr.com/5/4241/35467523155_346b08810f_q.jpg",
+    //                 "type": "beach",
+    //                 "iconSize": [60, 60]
+    //             },
+    //             "geometry": {
+    //                 "type": "Point", // yes, this will be the type for our "places"
+    //                 "coordinates": [
+    //                     -78.82,
+    //                     9.57,
+    //                 ]
+    //             }
+    //         },
+    //     ]
+    // };
+    // geojson_sample.features.forEach((marker) => {
+    //     new mapboxgl.Marker()
+    //         .setLngLat(marker.geometry.coordinates)
+    //         .addTo(map);
+    // })
 
-    const csv_data_sample =
-    [
-        {longitude: 00.0, latitude: 00.0},
-        {longitude: 00.0, latitude: 00.0},
-        {longitude: 00.0, latitude: 00.0}
-    ]
+    // const csv_data_sample =
+    // [
+    //     {longitude: 00.0, latitude: 00.0},
+    //     {longitude: 00.0, latitude: 00.0},
+    //     {longitude: 00.0, latitude: 00.0}
+    // ]
     // var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
 
     // Custom Calls to create custom marker. To be consolidated with this example from the docs:
@@ -206,18 +197,4 @@ export default function Map(props) {
         // setStateVariableForThisBoundary(stateVariableForThisBoundary)
         // and then because useEffect it will automatically update? maybe?
     }
-    const variableOne = "poop1";
-    const variableTwo = "poop2";
-
-    return(<>
-        <div className="map-body">
-            <button id="re-render" onClick={() => setRandom(Math.random())}>
-                Re-render
-            </button>
-            <DataFromRails variableOne={variableOne} variableTwo={variableTwo} />
-            <Legend handleLayerToggle={handleLayerToggle} />
-            <h3>Map Goes Here</h3>
-            <div id="mapbox_element"></div>
-        </div>
-    </>);
 }
