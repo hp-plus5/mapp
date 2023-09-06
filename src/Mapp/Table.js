@@ -1,8 +1,8 @@
-import './FileView.scss';
+import './Table.scss';
 
-export default function FileView(props) {
+export default function Table(props) {
     return(
-        <div className="file_view">
+        <div className="table_view">
             <table>
                 <thead>
                     <tr>

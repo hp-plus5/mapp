@@ -1,11 +1,11 @@
 import './Mapp.scss';
-import FileKeeper from "./FileKeeper";
+import UploadCsv from "./UploadCsv";
 import Map from "./Map";
 
 export default function Mapp() {
     return(
         <div id="mapp">
-            <FileKeeper />
+            <UploadCsv />
             <Map />
         </div>
     );

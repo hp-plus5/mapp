@@ -1,5 +1,4 @@
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
-// import FileKeeper from './FileKeeper';
 import Legend from './Legend';
 import DataFromRails from './DataFromRails';
 import Marker from './Marker';

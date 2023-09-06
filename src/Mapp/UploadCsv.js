@@ -1,8 +1,7 @@
 import { useState } from "react";
-import UploadEntryForm from "./UploadEntryForm";
-import FileView from "./FileView";
+import Table from "./Table";
 
-export default function FileKeeper() {
+export default function UploadCsv() {
     var [file, setFile] = useState();
     var [array, setArray] = useState([]);
     const fileReader = new FileReader();
@@ -26,6 +25,7 @@ export default function FileKeeper() {
         }
     };
 
+    // TODO-SAM: make this convert to JSON instead. Include headerkeys, defined below this method. Then save that JSON to Redux. Once that state is shared, separate the Table component from this and add it to Mapp.js instead.
     /**
      * csvFileToArray()
      * @param {fileUploadEventOutput} string 
@@ -72,11 +72,15 @@ export default function FileKeeper() {
      */
     const headerKeys = Object.keys(Object.assign({}, ...array));
 
-    return (<>
-        <UploadEntryForm 
-            handleOnChange={handleOnChange} 
-            handleOnSubmit={handleOnSubmit}
-        />
-        <FileView fileHeaders={headerKeys} fileInfo={array} />
+    return(<>
+        <form onSubmit={handleOnSubmit}>
+            <label>
+                Upload
+            <input type="file" accept=".csv" id="fileUploadId"
+            onChange={handleOnChange} value={file} />
+            </label>
+            <button type="submit">upload</button>
+        </form>
+        <Table fileHeaders={headerKeys} fileInfo={array} />
     </>);
 }
