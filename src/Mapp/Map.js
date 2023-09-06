@@ -1,12 +1,11 @@
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 import Legend from './Legend';
-import Marker from './Marker';
 import './Map.scss';
 import { useEffect, useState } from 'react'; 
 
 export default function Map(props) {
     const [map, setMap] = useState();
-    const [marker, setMarker] = useState();
+    // const [marker, setMarker] = useState();
     
     const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic3dhcm5lciIsImEiOiJjbGY3a3FranIwNDJrM3Nydmt3ZnVhNTI0In0.HqgTiHI-nq0IkFRQbZ3XgA';
 
@@ -22,14 +21,14 @@ export default function Map(props) {
             accessToken: MAPBOX_ACCESS_TOKEN
         });
 
-        let marker = new mapboxgl.Marker()
-            .setLngLat([-81.71, 41.39])
-            .addTo(map);
+        // let marker = new mapboxgl.Marker()
+        //     .setLngLat([-81.71, 41.39])
+        //     .addTo(map);
 
-        setMap(map);
-        setMarker(marker);
+        // setMap(map);
+        // setMarker(marker);
         return () => map.remove();
-    }, []);
+    }, []); // insert redux here
 
     // VV to add controls to the top left of the map frame
     // map.addControl(new mapboxgl.NavigationControl(), "top-left");
@@ -116,14 +115,6 @@ export default function Map(props) {
     //   };
     //   map.on('sourcedata', onSourceData);
     // });
-  
-
-    // const location_points =
-    // [
-    //     {longitude: 00.0, latitude: 00.0},
-    //     {longitude: 00.0, latitude: 00.0},
-    //     {longitude: 00.0, latitude: 00.0}
-    // ]
 
     //// to store data in localStorage, some tips.
     //// 1. useEffect to store data in localStorage whenever the input changes.
@@ -158,14 +149,11 @@ export default function Map(props) {
         // setStateVariableForThisBoundary(stateVariableForThisBoundary)
         // and then because useEffect it will automatically update? maybe?
     }
-    const variableOne = "poop1";
-    const variableTwo = "poop2";
 
     return(<>
         <div className="map-body">
             <Legend handleLayerToggle={handleLayerToggle} />
             <h3>Map Goes Here</h3>
-            <Marker places={} />
             <div id="mapbox_element"></div>
         </div>
     </>);

@@ -1,4 +1,4 @@
-export default function Marker(props) {
+export default function MarkerService(props) {
     const csvRow = props.places;
     // this works, but I need it to become case insensitive. I think it's fine that it takes strictly 2 values, although I'd like to find a const way to record those so we only need to change them in one place.
     const findOneCoordinate = (row, values) => {
@@ -9,11 +9,11 @@ export default function Marker(props) {
 
     // this works!
     const findCoordinates = (row) => {
-        let lat = 0;
         let lng = 0;
-        lat = findOneCoordinate(row, ["LATITUDE", "LAT"]);
+        let lat = 0;
         lng = findOneCoordinate(row, ["LONGITUDE", "LNG"]);
-        return [lat, lng];
+        lat = findOneCoordinate(row, ["LATITUDE", "LAT"]);
+        return [lng, lat];
     }
 
     const collectProperties = (csvRow) => {
@@ -53,9 +53,4 @@ export default function Marker(props) {
             }
         });
     };
-
-    return(<>
-        <h3>Marker Goes Here</h3>
-        <></>
-    </>);
 }
