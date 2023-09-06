@@ -16,17 +16,17 @@ export default function Map(props) {
     useEffect(() => {
          const map = new mapboxgl.Map({
             container: 'mapbox_element',
-            style: 'mapbox://styles/mapbox/outdoors-v12',
+            style: "mapbox://styles/mapbox/streets-v11",
             center: [
-              74.24426803763072,
-              -2.2507114487818853
+              -81.71,
+              41.39
             ], // [lng, lat]
-            zoom: 0.6851443156248076,
+            zoom: 10,
             accessToken: MAPBOX_ACCESS_TOKEN
         });
 
         let marker = new mapboxgl.Marker()
-            .setLngLat([12.567898, 55.67583])
+            .setLngLat([-81.71, 41.39])
             .addTo(map);
 
         setMap(map);
