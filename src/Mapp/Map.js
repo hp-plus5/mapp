@@ -1,7 +1,7 @@
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 // import FileKeeper from './FileKeeper';
 import Legend from './Legend';
-import DebugData from './DebugData';
+import DataFromRails from './DataFromRails';
 import './Map.scss';
 import { useEffect, useState } from 'react'; 
 
@@ -179,7 +179,7 @@ export default function Map(props) {
             <button id="re-render" onClick={() => setRandom(Math.random())}>
                 Re-render
             </button>
-            <DebugData variableOne={variableOne} variableTwo={variableTwo} />
+            <DataFromRails variableOne={variableOne} variableTwo={variableTwo} />
             <Legend handleLayerToggle={handleLayerToggle} />
             <h3>Map Goes Here</h3>
             <div id="mapbox_element"></div>
