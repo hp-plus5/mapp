@@ -3,7 +3,7 @@ import Table from "./Table";
 
 export default function UploadCsv() {
     var [file, setFile] = useState();
-    var [array, setArray] = useState([]);
+    var [places, setPlaces] = useState([]);
     const fileReader = new FileReader();
 
     const handleOnChange = (event) => {
@@ -29,58 +29,63 @@ export default function UploadCsv() {
     /**
      * csvFileToArray()
      * @param {fileUploadEventOutput} string 
-     * @returns CSV array called rows[], each of which contains an object created of column values
+     * @returns set state variable `places`, which represents rows[], each of which contains an object created of column values of the CSV
      * [  
      *   {
-     *      LATITUDE: '41.25', 
-     *      LONGITUDE: '-80.70', 
-     *      NAME: "SOCCER 6", 
-     *      NOTES: "", 
-     *      SIZE: "FIELD", 
-     *      SPORT: "SOCCER" 
+     *      Latitude: '41.39',
+     *      Longitude: '-81.71',
+     *      Size: "STADIUM",
      *   },
      *   {
-     *      LATITUDE: '41.2', 
-     *      LONGITUDE: '-81.2', 
-     *      NAME: "SOCCER 5", 
-     *      NOTES: "I enjoyed soccer once", 
-     *      SIZE: "STADIUM", 
-     *      SPORT: "SOCCER" 
+     *      Latitude: '41.2',
+     *      Longitude: '-81.2',
+     *      Size: "FIELD",
      *   } 
      * ]
      */
     const csvFileToArray = string => {
         const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
         const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
+        console.log(csvRows);
+        // csvRows => ["41.39,-81.71,STADIUM", "41.2,-81.2,FIELD"]; each row is a string
     
-        const array = csvRows.map(row => {
+        const places = csvRows.map(row => {
           const values = row.split(",");
-          const obj = csvHeader.reduce((object, header, index) => {
-            object[header] = values[index];
-            return object;
+            // ["41.39", "-81.71", "STADIUM"] (etc)
+          const obj = csvHeader.reduce((row_object, header, indexOfHeader) => {
+            // row_object => {"Latitude":"41.39", "Longitude":"-81.71", "Size":"STADIUM"}
+            // header => "Latitude"
+            // index => 0
+            /* `Reduce`, like `map`, iterates through a collection. The object will remain the same through each call to reduce (one call per row), but the header and the indexOfHeaderd values will iterate through however many columns the user has uploaded. I think the object `row_object` is created after the completion of the method, but is available upon `console.log()` so early due to a callback method. */
+
+            // {"Latitude":"41.39", "Longitude":"-81.71","Size":"STADIUM"}["Latitude"] 
+            // is being assigned the value of: ["row1value1/41.39", "row1value2/-81.71", "row1value2/STADIUM"][indexOfHeader]
+            row_object[header] = values[indexOfHeader];
+            return row_object;
           }, {});
 
           return obj;
         });
-    
-        setArray(array);
+
+        setPlaces(places);
     };
 
     /**
-     * headerKeys:
+     * headerKeys (if there are columns without a label, their value will be '' or '\r'):
      * ['LATITUDE', 'LONGITUDE', 'NAME', 'NOTES', 'SPORT', 'SIZE', '', '\r']
      */
-    const headerKeys = Object.keys(Object.assign({}, ...array));
+    const headerKeys = Object.keys(Object.assign({}, ...places));
 
     return(<>
         <form onSubmit={handleOnSubmit}>
             <label>
                 Upload
             <input type="file" accept=".csv" id="fileUploadId"
-            onChange={handleOnChange} value={file} />
+            onChange={handleOnChange}  /> 
+            {/* `value={file}` was in this input element and the console became very angry. */}
             </label>
             <button type="submit">upload</button>
         </form>
-        <Table fileHeaders={headerKeys} fileInfo={array} />
+        <Table fileHeaders={headerKeys} filePlaces={places} />
     </>);
 }
