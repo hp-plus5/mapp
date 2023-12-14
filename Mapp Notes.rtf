@@ -1,0 +1,67 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 Input: \
+GIS charts\
+User-uploaded CSV files\
+\
+Output:\
+Map\
+\
+Featuring for MVP:\
+Custom name and notes field\
+Whatever the third+ columns are in their CSV, we take it as a type and allow them to filter results by those column values. They become types/filters\
+Search based on words; a fuzzy search\
+\
+Raster in Mapbox API-speak is images/satellite view\
+Vector is what we want\
+We don\'92t want something static; we want users to be able to click on points\
+\
+\
+Process of saving that I anticipate:\
+1. User uploads CSV file\
+- How to most safely intake data a user submits, considering it could be anything?\
+2. Data is mapped to the model\
+- Model handles incoming addresses and turns them into geocodes (longitude and latitude)\
+- Model saves geocodes only? Chuck the address? Doesn\'92t seem helpful. Perhaps permit users to select if they save the addresses separately for more legible human viewing?\
+- Points are fed back into React. Do I convert them to JSON before or after this? How to best do?\
+- React creates map\
+- React creates a lot of \'93AddPoint\'94 calls and loops through all of the user-submitted geocodes to make them visible on the map\
+\
+In other words,\
+- Intake form\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 - Transfer FormData to file\
+- Transfer file to the file\'92s data\
+- Map each row of the file data to a model, validating it in-model along the way\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 - Guard against attack in the model. I\'92m not sure if this is exactly the same as the previous step\
+- Send model instances to React\
+\
+Controller methods:\
+/ GET - home screen, empty intake form\
+/ POST - form submission\
+/ GET - map?\
+\
+Tasks:\
+Big:\
+Who manages the CSV data on upload?\
+Get Rails project set up with React frontend\
+Architect the application (see above)\
+Create safe users\
+\
+Small:\
+- Set up repo\
+- Figure out what set marker requests should look like\
+- Attempt to convert CSV data into a load of marker requests\
+- List markers out on map successfully\
+- Iterate through markers in zoomed-in mode\
+- Save zoom & center position and create a button to permit the user to navigate instantly to the wide map view\
+- \
+\
+\
+}
