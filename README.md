@@ -4,6 +4,7 @@ Welcome to Mapp! This is a use of the Mapbox GL JS API to the ends of creating m
 
 In the project directory, you can run:
 ### `npm start`
+Or on my Linux computer, I run `pkgx npm start`, since `pkgx` is my package manager.
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
