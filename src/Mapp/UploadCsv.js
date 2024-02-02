@@ -5,6 +5,7 @@ export default function UploadCsv() {
     var [file, setFile] = useState();
     var [places, setPlaces] = useState([]);
     const fileReader = new FileReader();
+    const POSSIBLE_CSV_DELIMITERS = [",", ";", "|"]
 
     const handleOnChange = (event) => {
         event.preventDefault();
@@ -44,31 +45,83 @@ export default function UploadCsv() {
      * ]
      */
     const csvFileToArray = string => {
-        const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
+        let rawHeaderRow =  string.slice(0, string.indexOf("\n"));
+        let [delimiter, headerWithoutDelimiterSpecification] = determineDelimiter(rawHeaderRow);
+
+        let csvHeader = headerWithoutDelimiterSpecification.split(delimiter);
+        // remove empty strings from headers array
+        csvHeader = csvHeader.filter(Boolean);
+        // csvHeader => ["LATITUDE", "LONGITUDE", "NAME", "NOTES", "SPORT", "SIZE"]
+
         const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
-        console.log(csvRows);
-        // csvRows => ["41.39,-81.71,STADIUM", "41.2,-81.2,FIELD"]; each row is a string
+        // csvRows => ["41.61,-81.6,STADIUM", "41.2,-81.2,FIELD"]; each row is a string
     
         const places = csvRows.map(row => {
-          const values = row.split(",");
-            // ["41.39", "-81.71", "STADIUM"] (etc)
-          const obj = csvHeader.reduce((row_object, header, indexOfHeader) => {
-            // row_object => {"Latitude":"41.39", "Longitude":"-81.71", "Size":"STADIUM"}
-            // header => "Latitude"
-            // index => 0
-            /* `Reduce`, like `map`, iterates through a collection. The object will remain the same through each call to reduce (one call per row), but the header and the indexOfHeaderd values will iterate through however many columns the user has uploaded. I think the object `row_object` is created after the completion of the method, but is available upon `console.log()` so early due to a callback method. */
+            let values = row.split(delimiter);
+          
+            // remove empty strings from headers array
+            values = values.filter(Boolean);
+                // ["41.39", "-81.71", "FIELD"] (etc)
+            const obj = csvHeader.reduce((row_object, header, indexOfHeader) => {
+                // row_object => {"Latitude":"41.39", "Longitude":"-81.71", "Size":"FIELD"}
+                // header => "Latitude"
+                // index => 0
+                /* `Reduce`, like `map`, iterates through a collection. The object will remain the same through each call to reduce (one call per row), but the header and the indexOfHeaderd values will iterate through however many columns the user has uploaded. I think the object `row_object` is created after the completion of the method, but is available upon `console.log()` so early due to a callback method. */
 
-            // {"Latitude":"41.39", "Longitude":"-81.71","Size":"STADIUM"}["Latitude"] 
-            // is being assigned the value of: ["row1value1/41.39", "row1value2/-81.71", "row1value2/STADIUM"][indexOfHeader]
-            row_object[header] = values[indexOfHeader];
-            return row_object;
-          }, {});
+                // {"Latitude":"41.39", "Longitude":"-81.71","Size":"FIELD"}["Latitude"] 
+                // is being assigned the value of: ["row1value1/41.39", "row1value2/-81.71", "row1value2/FIELD"][indexOfHeader]
+                row_object[header] = values[indexOfHeader];
 
-          return obj;
+                // for quicker debugging:
+                // console.log(["This is the row object: ", row_object, "This is the header: ", header, "This is the index of header: ", header, "This is the row object [header]: ", row_object[header], "This is value index: ", values[indexOfHeader]])
+                return row_object;
+            }, {});
+
+            return obj;
         });
-
+        
         setPlaces(places);
     };
+
+    /**
+     * Finds the delimiter of the CSV
+     */
+    function determineDelimiter(unformattedHeaderRow) {
+        let [specifiedDelimiter, specificationFreeHeaderRow] = checkSpecification(unformattedHeaderRow);
+        if (specifiedDelimiter) { // falsy if empty string is returned
+            return [specifiedDelimiter, specificationFreeHeaderRow]
+        } else {
+            let delimiter = guessDelimiter(unformattedHeaderRow);
+            return [delimiter, unformattedHeaderRow]
+        }
+    }
+
+    /**
+     * Determines if there is an explicitly specified delimiter at the start of the CSV file
+     */
+    const checkSpecification = headerRow => {
+        let specificationKey = headerRow.substring(0, 4);
+        if (specificationKey == "sep=") {
+            let delimiter = headerRow.substring(4, 5)
+            return [delimiter, headerRow.substring(5)];
+        } else {
+            return ["", headerRow];
+        }
+    }
+
+    /**
+     * Guesses a number of common CSV file delimiters
+     */
+    const guessDelimiter = unformattedHeaderRow => {
+        let delimiter = "";
+        POSSIBLE_CSV_DELIMITERS.forEach(possibleDelimiter => {
+            let splitHeaderColumns = unformattedHeaderRow.split(possibleDelimiter);
+            if (splitHeaderColumns.length > 1) {
+                delimiter = possibleDelimiter;
+            }
+        });
+        return delimiter;
+    }
 
     /**
      * headerKeys (if there are columns without a label, their value will be '' or '\r'):
