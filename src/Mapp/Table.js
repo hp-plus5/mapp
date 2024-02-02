@@ -13,16 +13,17 @@ export default function Table(props) {
                 <thead>
                     <tr>
                         {props.fileHeaders.map(header_key => (
-                            <th className="word-icon header">{header_key}</th>
+                            <th className="word-icon header" key={window.crypto.randomUUID()}>{header_key}</th>
                         ))}
-                        {/* React requires an ID for this map() method. They suggest this, but I'd love to get something...better. Not sure why it feels bad to use this. https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID */}
                     </tr>
                 </thead>
                 <tbody>
                     {props.filePlaces.map((place) => (
-                        <tr key={place.id}>
+                        <tr key={window.crypto.randomUUID()}>
                             {Object.values(place).map((place_column_value) => (
-                                <td className="word-icon filter">{place_column_value}</td>
+                                <td className="word-icon filter"
+                                    key={window.crypto.randomUUID()}
+                                >{place_column_value}</td>
                             ))}
                         </tr>
                     ))}
