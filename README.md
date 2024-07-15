@@ -2,15 +2,14 @@
 
 Welcome to Mapp! This is a use of the Mapbox GL JS API to the ends of creating mapping software that's more approachable and direct than the default Mapbox or Google Maps products. (Nothing like blind ambition!) This project needs built out quite a bit more.
 
-In the project directory, you can run:
-### `npm start`
-Or on my Linux computer, I run `pkgx npm start`, since `pkgx` is my package manager.
+If this is Sam reading this (that's very likely), there's a whole section for how to get this project started on your specific laptop. Jump straight there, please, rather than just trying `npm start`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+`npm start` runs this app in the development mode and it will open to [http://localhost:3000](http://localhost:3000) by default.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Use Notes
 
@@ -80,63 +79,102 @@ Create safe users
 
 ## Getting Started with Entire App
 
-To begin this frontend application, navigate to the parent file (where this README is), type `npm install`, and then type `npm start`.
+### If I were on my Mac
 
-To begin the backend application, navigate to the folder next to this app's parent folder (called `mapp-backend`), type `bundle install`, and then type `rails s`. This project will run on port `:4000` by default unless that port is taken.
+To begin the backend application, navigate to the folder next to this app's parent folder (called `mapp-backend`). It will run on port `:4000` by default unless that port is taken. Navigating to that folder will cue your computer to offer you instructions.
 
-Run Postgres, an application on the computer that acts as a server for multiple databases. You can see whether it's running by looking at the top bar of your Mac: if the elephant silhouette says "Stop", that means it's running. From there, you can navigate into the pgAdmin 4 softtware. From the folder hierarchy in the sidebar of `PostgreSQL 14` (our server-running software that we just started up), there's a subfolder called `ServerForAllDatabases` and then `Databases`. (These names are arbitrary and aren't inherently called these things. They're just what they're called on my computer.) From here you're looking for two databases: one called `mapp_backend_dev` and one called `mapp_backend_test`. Since you're running Postgres already, you should be able to access these databases. In pgAdmin 4, the file structure off of your database is `datbabase_name`->`Schema`->`public`->`Tables`. From here you can right-click on `Tables` and select `Query Tool`. From here you can write SQL such as `SELECT * FROM COLLECTIONS`.
+Run Postgres, an application on the computer that acts as a server for multiple databases. You can see whether it's running by looking at the top bar of your Mac: if the elephant silhouette says "Stop", that means it's running. From there, you can navigate into the pgAdmin 4 software. From the folder hierarchy in the sidebar of `PostgreSQL 14` (our server-running software that we just started up), there's a subfolder called `ServerForAllDatabases` and then `Databases`. (These names are arbitrary and aren't inherently called these things. They're just what they're called on my computer.) From here you're looking for two databases: one called `mapp_backend_dev` and one called `mapp_backend_test`. Since you're running Postgres already, you should be able to access these databases. In pgAdmin 4, the file structure off of your database is `datbabase_name`->`Schema`->`public`->`Tables`. From here you can right-click on `Tables` and select `Query Tool`. From here you can write SQL such as `SELECT * FROM COLLECTIONS`.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Specific to my Windows setup
 
-## Available Scripts
+I recently returned to this project and had a hard time getting started on my personal device. This subsection of the README is specific to these details and aren't relevant to others.
 
-### `npm test`
+#### Finding the Files Locally
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Open an instance of the command line prompt called "Command Prompt". It's the one saved in the upper section of my start menu.
 
-### `npm run build`
+Next to the "new tab" "+" button is a dropdown. Select "Ubuntu".
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+From here you can access your bash settings and can use linux commands like `ls` again. This project currently uses the folders called "mapp" and "mapp-backend" on your local machine, but not "mapp-ror".
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed! (Sam speaking: The use case for `build` is to build a *production* environment version of the app.)
+In your mapp project, run `pkgx npm install`, since you're using `pkgx` as your package manager for this project. Then run `pkgx npm start`. It'll come to `:3000`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Open a new Ubuntu tab and navigate to `mapp-backend`. You'll see printed instructions here once you enter the folder. Follow them. Just in case it's been five years since you looked at this and you've changed computers, here's the instructions:
 
-### `npm run eject`
+```
+Don't forget to run this command if you havent in this tab or window yet: rvm use 3.1.2 ..without it you will get errors about your Ruby version, libraries not having their native extensions, and similar misleading messages.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Run these commands to get started quickly:
+bundle install
+sudo service postgresql start
+rake db:create
+rails s
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The password you'll need for postgres is the one to your old mac. Obviously only run `rake db:create` if you've worked in this project for a long time or want to refresh your state. You will need to declare your ruby version in every new tab in this repository.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To mess around in postgres, you'll need to log in using `sudo -i -u postgres`. After this, you can commands like `psql`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+If you need more help, search for "mapp" in your Keep.
 
-## Learn More
+#### Using the database
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Once you're in the `mapp-backend` folder and you've started postgres with `sudo service postgres start`, you'll need to log in and access your data.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`sudo -i -u postgres` gets you to a new prompt that looks like this:
 
-### Analyzing the Bundle Size
+```
+postgres@Computer-Name: ~$
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+From here, you want to enter the world of postgres: run the `psql` command.
 
-### Making a Progressive Web App
+Your new prompt looks like this:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+postgres=#
+```
 
-### Advanced Configuration
+From here, there are a number of commands you can run. here's the ones I find most immediately helpful.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+| command | action |
+|:--------|:-------|
+| `\?` | help menu |
+| `\l` | show all database connections |
+| `\x` | expands your display |
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+To access your data within a given database, you have to open a database. To do so, run `\c mapp_backend_development`. This should permit you to access your data with SQL. This will get you another new namespace.
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+database_name=#
+```
+
+Overall you can expect getting to a DB to look like this:
+
+```
+postgres=# \c database_name
+You are now connected to database "database_name" as user "your-user".
+database_name=# SELECT * from "table";
+```
+
+Note that your SQL must conclude with a semicolon; if it isn't present, add it on the next line after you've pressed enter to complete and run the code. On Windows, at least, the quotation marks are also required around your table name.
+
+Your response should look something like this.
+
+```
+-[ RECORD 1 ]----------------------------------------------------
+id         | 1
+file_name  | somebodys collection
+contents   | there are a lot of places in here i am certain of it
+created_at | 2024-02-01 20:59:50.664711
+updated_at | 2024-02-01 20:59:50.664711
+```
+
+## Learnings
+
+### `useEffect`/React Query library
+
+Unlike `useEffect` and `useState`, the typical vanilla-y React hooks for managing state, the ReactQuery library will manage caching, background updates, and stale data without any additional setup or code if you simply tell it where to get your data from. React Query uses custom hooks for this like `useQuery`, which calls on `useEffect` and `useState` internally. (You can find the code underlying [`useQuery`](https://dev.to/wra-sol/how-does-react-querys-usequery-work-5gna) here.)
+
