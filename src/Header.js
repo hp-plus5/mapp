@@ -1,4 +1,5 @@
 import logo_map from './images/logo_map.svg';
+import UserAuthentication from './UserAuthentication';
 import './Header.scss';
 
 function Header() {
@@ -10,8 +11,7 @@ function Header() {
           <h3 className="byline">Think It, Mapp It, Make It</h3>
         </span>
         <span className="user_tools">
-          <button type="button">Log In</button>
-          <button type="button">Register</button>
+          <UserAuthentication />
         </span>
       </header>
     );

@@ -1,5 +1,6 @@
 import UploadCsv from "./UploadCsv";
 import Map from "./Map";
+import AddAsCollection from "./AddAsCollection";
 import SavedCollectionList from './SavedCollectionList';
 
 export default function Mapp() {
@@ -7,6 +8,7 @@ export default function Mapp() {
         <div>
             <UploadCsv />
             <Map />
+            <AddAsCollection />
             <SavedCollectionList />
         </div>
     );
