@@ -137,7 +137,7 @@ export default function UploadCsv() {
             onChange={handleOnChange}  /> 
             {/* `value={file}` was in this input element and the console became very angry. */}
             </label>
-            <button type="submit">upload</button>
+            <button type="submit">display spreadsheet</button>
         </form>
         <Table fileHeaders={headerKeys} filePlaces={places} />
     </>);
