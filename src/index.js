@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 // QueryClient/Provider
 // https://www.freecodecamp.org/news/5-ways-to-fetch-data-react-graphql/
 // You use React Query's Provider component and create a query client where you can set some default data fetching settings if you like. Then within your app component itself, or any child components of App, you can use the useQuery hook.
+// eventually React will release a stable hook just called "use". We'll update to that when the time comes, I think.
 const client = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
