@@ -123,6 +123,13 @@ select {
   margin: 1em;
 }
 
+ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
 ////////////////// CLASSES \\\\\\\\\\\\\\\\\\\
 .app {
   background-color: var(--color-darker);

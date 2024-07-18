@@ -1,6 +1,6 @@
+import './SavedCollectionList.scss';
 import { request, gql } from "graphql-request";
 import { useQuery } from "react-query";
-
 
 export default function SavedCollectionList() {
     const real_endpoint = "http://localhost:4000/graphql/";
@@ -14,7 +14,9 @@ export default function SavedCollectionList() {
     }`;
 
     const { data, isLoading, error } = useQuery("launches", () => {
-        return request(real_endpoint, getAllCollections);
+        let answer = request(real_endpoint, getAllCollections);
+        console.log(answer);
+        return answer;
     });
     
     if (isLoading) return "Loading the query...";
@@ -48,13 +50,13 @@ export default function SavedCollectionList() {
     // end experimentation
     
       return (
-        <div>
+        <div id="collection_list">
           <h1>Collections</h1>
           <ul>
             {data.collections && data.collections.map((collection) => (
               <li key={collection.id} onClick={handleOpenCollection}>{collection.fileName}
               {/* fileName is what ruby calls `file_name`. pay attention to variable names as they ride through graphQL */}
-              <button >Open this collection on map</button>
+              <button>Open this collection on map</button>
               </li>
             ))}
           </ul>
