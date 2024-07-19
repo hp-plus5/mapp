@@ -54,8 +54,10 @@ export default function SavedCollectionList() {
           <h1>Collections</h1>
           <ul>
             {data.collections && data.collections.map((collection) => (
-              <li key={collection.id} onClick={handleOpenCollection}>{collection.fileName}
+              <li key={collection.id} onClick={handleOpenCollection}>
+                <p>{collection.fileName}</p>
               {/* fileName is what ruby calls `file_name`. pay attention to variable names as they ride through graphQL */}
+                <p>{collection.updatedAt}</p>
               <button>Open this collection on map</button>
               </li>
             ))}
