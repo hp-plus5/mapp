@@ -80,6 +80,7 @@ button {
   border-radius: 99px;
   padding: 1em 2em;
   margin: 1em;
+  cursor: pointer;
 
   &:secondary {
     color: var(--color-secondary);
