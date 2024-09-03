@@ -1,6 +1,8 @@
 # MAPP
 
-Welcome to Mapp! This is a use of the Mapbox GL JS API to the ends of creating mapping software that's more approachable and direct than the default Mapbox or Google Maps products. (Nothing like blind ambition!) This project needs built out quite a bit more.
+Welcome to Mapp! This is an app I'm making that takes in a CSV with columns "latitude", "longitude", and "name" and plots each row as a tooltip on a map. It allows further columns to become tooltip details. This uses the Mapbox GL JS API. This project needs built out quite a bit more; eventually I want the CSV to be editable in-browser, for customization options for tooltip display and styling to be available to the user, and the vital end goal: exporting your map to be visible to others. Current tasks are making an accessible, editable CSV viewer in-browser and getting user authentication up and running.
+
+This is mid-process, vying for my time (and losing, currently) with setting up a thorough portfolio and handling ongoing job applications.
 
 If this is Sam reading this (that's very likely), there's a whole section for how to get this project started on your specific laptop. Jump straight there, please, rather than just trying `npm start`.
 
@@ -34,7 +36,7 @@ I think we'll need to ask them in a geoJSON format
 If we want more customized icons, we can look to the [Maki icon editor](https://labs.mapbox.com/maki-icons/editor/).
 
 **Stretch Goal Ideas:**
-- User can create a new point in the map GUI, edits its properties, add that point automatically to the table, and later export their new point  to a CSV file.
+- User can create a new point in the map GUI, edits its properties, add that point automatically to the table, and later export their new point to a CSV file.
 
 #### Technical breakdown
 Process of saving that I anticipate:
