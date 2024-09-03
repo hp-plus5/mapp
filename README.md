@@ -23,17 +23,12 @@ User-uploaded CSV files
 Map
 Table of CSV data
 
+## Product
+
 **Featuring for MVP:**
 - Custom name and notes field
-- Whatever the third+ columns are in their CSV, we take it as a type and allow them to filter results by those column values. They become types/filters
+- Whatever the third+ columns are in their CSV, we take it as a type and allow them to filter results by those column values. They become types/filters. (I've done this before in my professional work for CRE Planning and Development, so it's a bit back-burner while I explore newer-to-me topics.)
 - Search based on words; a fuzzy search
-
-Things to know about the many confusing APIs offered by Mapbox:
-Raster in Mapbox API-speak is images/satellite view
-Vector is what we want
-We don’t want something static; we want users to be able to click on points and edit their data/refresh specific markers
-I think we'll need to ask them in a geoJSON format
-If we want more customized icons, we can look to the [Maki icon editor](https://labs.mapbox.com/maki-icons/editor/).
 
 **Stretch Goal Ideas:**
 - User can create a new point in the map GUI, edits its properties, add that point automatically to the table, and later export their new point to a CSV file.
@@ -180,3 +175,11 @@ updated_at | 2024-02-01 20:59:50.664711
 
 Unlike `useEffect` and `useState`, the typical vanilla-y React hooks for managing state, the ReactQuery library will manage caching, background updates, and stale data without any additional setup or code if you simply tell it where to get your data from. React Query uses custom hooks for this like `useQuery`, which calls on `useEffect` and `useState` internally. (You can find the code underlying [`useQuery`](https://dev.to/wra-sol/how-does-react-querys-usequery-work-5gna) here.)
 
+### MapBox API
+
+Things to know about the many confusing APIs offered by Mapbox:
+Raster in Mapbox API-speak is images/satellite view
+Vector is what we want
+We don’t want something static; we want users to be able to click on points and edit their data/refresh specific markers
+I think we'll need to ask them in a geoJSON format
+If we want more customized icons, we can look to the [Maki icon editor](https://labs.mapbox.com/maki-icons/editor/).
