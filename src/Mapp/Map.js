@@ -7,7 +7,7 @@ export default function Map(props) {
     const [map, setMap] = useState();
     // const [marker, setMarker] = useState();
     
-    const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1Ijoic3dhcm5lciIsImEiOiJjbGY3a3FranIwNDJrM3Nydmt3ZnVhNTI0In0.HqgTiHI-nq0IkFRQbZ3XgA';
+    const MAPBOX_ACCESS_TOKEN = 'wrong access token silly :)';
 
     useEffect(() => {
          const map = new mapboxgl.Map({
