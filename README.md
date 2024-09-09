@@ -1,6 +1,8 @@
 # MAPP
 
-Welcome to Mapp! This is a use of the Mapbox GL JS API to the ends of creating mapping software that's more approachable and direct than the default Mapbox or Google Maps products. (Nothing like blind ambition!) This project needs built out quite a bit more.
+Welcome to Mapp! This is an app I'm making that takes in a CSV with columns "latitude", "longitude", and "name" and plots each row as a tooltip on a map. It allows further columns to become tooltip details. This uses the Mapbox GL JS API. This project needs built out quite a bit more; eventually I want the CSV to be editable in-browser, for customization options for tooltip display and styling to be available to the user, and the vital end goal: exporting your map to be visible to others. Current tasks are making an accessible, editable CSV viewer in-browser and getting user authentication up and running.
+
+This is mid-process, vying for my time (and losing, currently) with setting up a thorough portfolio and handling ongoing job applications.
 
 If this is Sam reading this (that's very likely), there's a whole section for how to get this project started on your specific laptop. Jump straight there, please, rather than just trying `npm start`.
 
@@ -21,20 +23,15 @@ User-uploaded CSV files
 Map
 Table of CSV data
 
+## Product
+
 **Featuring for MVP:**
 - Custom name and notes field
-- Whatever the third+ columns are in their CSV, we take it as a type and allow them to filter results by those column values. They become types/filters
+- Whatever the third+ columns are in their CSV, we take it as a type and allow them to filter results by those column values. They become types/filters. (I've done this before in my professional work for CRE Planning and Development, so it's a bit back-burner while I explore newer-to-me topics.)
 - Search based on words; a fuzzy search
 
-Things to know about the many confusing APIs offered by Mapbox:
-Raster in Mapbox API-speak is images/satellite view
-Vector is what we want
-We don’t want something static; we want users to be able to click on points and edit their data/refresh specific markers
-I think we'll need to ask them in a geoJSON format
-If we want more customized icons, we can look to the [Maki icon editor](https://labs.mapbox.com/maki-icons/editor/).
-
 **Stretch Goal Ideas:**
-- User can create a new point in the map GUI, edits its properties, add that point automatically to the table, and later export their new point  to a CSV file.
+- User can create a new point in the map GUI, edits its properties, add that point automatically to the table, and later export their new point to a CSV file.
 
 #### Technical breakdown
 Process of saving that I anticipate:
@@ -178,3 +175,11 @@ updated_at | 2024-02-01 20:59:50.664711
 
 Unlike `useEffect` and `useState`, the typical vanilla-y React hooks for managing state, the ReactQuery library will manage caching, background updates, and stale data without any additional setup or code if you simply tell it where to get your data from. React Query uses custom hooks for this like `useQuery`, which calls on `useEffect` and `useState` internally. (You can find the code underlying [`useQuery`](https://dev.to/wra-sol/how-does-react-querys-usequery-work-5gna) here.)
 
+### MapBox API
+
+Things to know about the many confusing APIs offered by Mapbox:
+Raster in Mapbox API-speak is images/satellite view
+Vector is what we want
+We don’t want something static; we want users to be able to click on points and edit their data/refresh specific markers
+I think we'll need to ask them in a geoJSON format
+If we want more customized icons, we can look to the [Maki icon editor](https://labs.mapbox.com/maki-icons/editor/).
